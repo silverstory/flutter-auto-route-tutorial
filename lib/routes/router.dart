@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route_annotations.dart';
-import 'package:auto_route/transitions_builders.dart';
 import 'package:auto_route_tutorial/pages/initial_page.dart';
 import 'package:auto_route_tutorial/pages/second_page.dart';
 import 'package:auto_route_tutorial/pages/third_page.dart';
+import 'package:auto_route/auto_route.dart';
 
-@autoRouter
+@MaterialAutoRouter()
 class $Router {
   @initial
   InitialPage initialPage;

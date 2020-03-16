@@ -1,4 +1,3 @@
-import 'package:auto_route_tutorial/pages/initial_page.dart';
 import 'package:auto_route_tutorial/routes/router.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: Router.initialPage,
       onGenerateRoute: Router.onGenerateRoute,
-      navigatorKey: Router.navigatorKey,
+      navigatorKey: Router.navigator.key,
     );
   }
 }

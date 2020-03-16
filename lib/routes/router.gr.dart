@@ -6,25 +6,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:auto_route/router_utils.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_tutorial/pages/initial_page.dart';
 import 'package:auto_route_tutorial/pages/second_page.dart';
 import 'package:auto_route_tutorial/pages/third_page.dart';
-import 'package:auto_route/transitions_builders.dart';
 
 class Router {
   static const initialPage = '/';
-  static const secondPage = '/secondPage';
-  static const thirdPage = '/thirdPage';
-  static GlobalKey<NavigatorState> get navigatorKey =>
-      getNavigatorKey<Router>();
-  static NavigatorState get navigator => navigatorKey.currentState;
-
+  static const secondPage = '/second-page';
+  static const thirdPage = '/third-page';
+  static final navigator = ExtendedNavigator();
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
     switch (settings.name) {
       case Router.initialPage:
-        return MaterialPageRoute(
+        return MaterialPageRoute<dynamic>(
           builder: (_) => InitialPage(),
           settings: settings,
         );
@@ -33,7 +29,7 @@ class Router {
           return misTypedArgsRoute<String>(args);
         }
         final typedArgs = args as String;
-        return MaterialPageRoute(
+        return MaterialPageRoute<dynamic>(
           builder: (_) => SecondPage(userId: typedArgs),
           settings: settings,
           fullscreenDialog: true,
@@ -43,7 +39,7 @@ class Router {
           return misTypedArgsRoute<ThirdPageArguments>(args);
         }
         final typedArgs = args as ThirdPageArguments;
-        return PageRouteBuilder(
+        return PageRouteBuilder<dynamic>(
           pageBuilder: (ctx, animation, secondaryAnimation) =>
               ThirdPage(userName: typedArgs.userName, points: typedArgs.points),
           settings: settings,
